@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Charts Centered with Image Above</title>
+    <script
+      type="text/javascript"
+      src="https://www.gstatic.com/charts/loader.js"
+    ></script>
+    <style>
+      body {
+        background-color: #012169;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+
+      .top-left-image {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 200px;
+        height: auto;
+      }
+
+      .centered-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .centered-image {
+        margin-bottom: 20px;
+        height: 150px;
+        width: auto;
+      }
+
+      .chart-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        width: 80%;
+        gap: 30px;
+      }
+
+      .chart-title {
+        font-family: Arial, sans-serif;
+        font-size: 22px;
+        margin-bottom: 10px;
+        color: #012169; /* Brady blue */
+        font-weight: bold;
+        text-align: center;
+        background-color: white;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      img.chart-image {
+        width: 500px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Replaced iframe with the new image URL for the top-left image -->
+    <img
+      src="https://lh3.googleusercontent.com/pw/AP1GczNvcyhgTiRJZyYD2WELrKfPoOrprO4JtghIcuLjBbJ4PBY5cgVDCb-zvnZVLiVtsbTVt_Xij5ImGFGMM-F8A0Ph1VZTrksmr3dyR_IoEDmnzjtR28A=w2400"
+      class="top-left-image"
+    />
+
+    <div class="centered-content">
+      <!-- Replaced iframe with the new image URL for the centered image -->
+      <img
+        src="https://lh3.googleusercontent.com/pw/AP1GczP3ELIq4f600J-YMzRNL0v4NNuFWZ5COafRqlpgTKn7hYSzDMkV0mxEopyz1EBqGIUPT5MZMqh6BR-utO024OCJGqmSf-ORg26T0bwblUm3-6P_qHg=w2400"
+        class="centered-image"
+      />
+
+      <div class="chart-container">
+        <div>
+          <div class="chart-title">Safety Evaluation</div>
+          <div id="chart_div1"></div>
+        </div>
+        <div>
+          <div class="chart-title">Days Without Accident</div>
+          <div id="chart_div2"></div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
