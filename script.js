@@ -12,12 +12,10 @@ async function drawChart() {
     const csvData = await response.text();
 
     // Split the CSV data into rows and then cells
-
     const rows = csvData.split("\n");
+    const data = rows.map((row) => row.split(","));
 
-    const data = rows.map((row) => row.split(",")); // Split by comma for CSV
-
-    // Assuming your metrics are in row 12, column 21 and row 14, column 21 (CSV is 0-indexed, and Google Sheets' "column 22" is index 21)
+    // Assuming your metrics are in row 12, column 21 and row 14, column 21
     const metric1Text = data[11][20];
     const metric2Text = data[13][20];
 
@@ -50,7 +48,7 @@ async function drawChart() {
       greenFrom: 80,
       greenTo: 100,
       minorTicks: 5,
-      majorTicks: [],
+      majorTicks: ["0", "100"], // Only 0 and 100
     };
 
     const data2 = google.visualization.arrayToDataTable([
@@ -65,7 +63,7 @@ async function drawChart() {
       greenTo: 100,
       minorTicks: 5,
       max: 365,
-      majorTicks: [],
+      majorTicks: ["0", "365"], // Only 0 and 365
     };
 
     const chart1 = new google.visualization.Gauge(
