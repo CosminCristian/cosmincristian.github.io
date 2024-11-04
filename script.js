@@ -43,7 +43,11 @@ async function drawChart() {
     const options1 = {
       width: 781,
       height: 312,
-      greenFrom: 0,
+      redFrom: 0,
+      redTo: 60,
+      yellowFrom: 60,
+      yellowTo: 80,
+      greenFrom: 80,
       greenTo: 100,
       minorTicks: 5,
       majorTicks: [],
