@@ -8,29 +8,25 @@ async function drawChart() {
 
   try {
     const response = await fetch(sheetUrl);
-
     const csvData = await response.text();
 
-    // Split the CSV data into rows and then cells
+    // Split CSV data into rows and then cells
     const rows = csvData.split("\n");
     const data = rows.map((row) => row.split(","));
 
-    // Assuming your metrics are in row 12, column 21 and row 14, column 21
+    // Log to verify structure
+    console.log(data);
+
+    // Extract metrics with correct indices
     const metric1Text = data[11][20];
     const metric2Text = data[13][20];
 
     const metric1Value = parseFloat(metric1Text.replace("%", "")) || 0;
-
     let metric2Value = parseFloat(metric2Text);
 
     if (isNaN(metric2Value)) {
       const dateParts = metric2Text.split("/");
-
-      if (dateParts.length === 3) {
-        metric2Value = parseInt(dateParts[0]);
-      } else {
-        metric2Value = 0;
-      }
+      metric2Value = dateParts.length === 3 ? parseInt(dateParts[0]) : 0;
     }
 
     const data1 = google.visualization.arrayToDataTable([
@@ -59,8 +55,15 @@ async function drawChart() {
     const options2 = {
       width: 781,
       height: 312,
-      greenFrom: 0,
-      greenTo: 100,
+      redColor: "#C3F0C6", // Light Green
+      redFrom: 0,
+      redTo: 122,
+      yellowColor: "#52C959", // Medium Green
+      yellowFrom: 122,
+      yellowTo: 243,
+      greenColor: "#109618", // Dark Green
+      greenFrom: 243,
+      greenTo: 365,
       minorTicks: 5,
       max: 365,
       majorTicks: ["0", "365"], // Only 0 and 365
@@ -69,13 +72,11 @@ async function drawChart() {
     const chart1 = new google.visualization.Gauge(
       document.getElementById("chart_div1")
     );
-
     chart1.draw(data1, options1);
 
     const chart2 = new google.visualization.Gauge(
       document.getElementById("chart_div2")
     );
-
     chart2.draw(data2, options2);
   } catch (error) {
     console.error("Error fetching or parsing data:", error);
